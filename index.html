@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="es-CL">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>KY SpA Archivo</title>
+<meta name="description" content="Bitácora de la empresa KY SpA: carpetas, notas y tareas del lanzamiento.">
+<meta name="theme-color" content="#161616">
+<meta name="robots" content="noindex">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="KY Archivo">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Courier+Prime:wght@400;700&family=Inter:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css?v=2">
+</head>
+<body>
+<header class="nav">
+  <ul class="l"><li><button data-open="empresa">Empresa</button></li><li><button data-open="pulso">Pulso</button></li><li><button data-open="_diario">Diario</button></li></ul>
+  <a class="seal" href="#" aria-label="KY SpA, inicio">ky</a>
+  <ul class="r"><li><button data-open="pendientes">Pendientes</button></li></ul>
+</header>
+<main>
+  <div class="head">
+    <div>
+      <div class="crumbs"><span>Archivo</span><span>Bitácora de la empresa</span></div>
+      <h1>KY SpA <em>Archivo</em></h1>
+    </div>
+    <div class="tools">
+      <div class="meta" id="hmeta"></div>
+      <button class="tbtn" data-open="_diario">Diario</button>
+      <button class="tbtn y" id="bNueva">+ Carpeta</button>
+      <button class="tbtn" id="bResp">Respaldo</button>
+    </div>
+  </div>
+  <div class="cabinet" id="cabinet" aria-label="Carpetas del archivo"></div>
+</main>
+<footer class="foot" id="foot"><span><b>KY SpA</b> — Yojhan Furuya · RUT 78.563.057-2</span><span id="fupd"></span></footer>
+
+<div class="grow" id="grow" aria-hidden="true" hidden></div>
+<section class="dossier" id="dossier" role="dialog" aria-modal="true" aria-labelledby="dTitle">
+  <div class="dbar"><div class="crumbs" id="dCrumbs"></div><button class="x" id="dClose" aria-label="Cerrar carpeta">✕</button></div>
+  <nav class="spines" id="spines" aria-label="Otras carpetas"></nav>
+  <div class="desk" id="desk"><div class="desk-in" id="deskIn"></div></div>
+</section>
+<div id="modal" class="modal" hidden></div>
+<div id="toast" class="toast" role="status" hidden></div>
+
+<script src="data.js?v=1"></script>
+<script src="app.js?v=1"></script>
+</body>
+</html>
