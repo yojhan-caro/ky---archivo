@@ -1,7 +1,7 @@
 /* KY SpA Archivo — funciona sin internet.
    Al publicar cambios, sube el número de VERSION para que la tablet tome la versión nueva. */
-const VERSION = 'ky-archivo-v1';
-const BASE = ['./', 'index.html', 'style.css?v=2', 'data.js?v=1', 'app.js?v=1', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
+const VERSION = 'ky-archivo-v2';
+const BASE = ['./', 'index.html', 'style.css?v=3', 'data.js?v=1', 'app.js?v=2', 'mesa.js?v=1', 'manifest.webmanifest', 'icons/icon.svg', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 self.addEventListener('install', e => { e.waitUntil(caches.open(VERSION).then(c => c.addAll(BASE)).then(() => self.skipWaiting())); });
 self.addEventListener('activate', e => { e.waitUntil(caches.keys().then(ks => Promise.all(ks.filter(k => k !== VERSION).map(k => caches.delete(k)))).then(() => self.clients.claim())); });
 self.addEventListener('fetch', e => {

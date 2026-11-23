@@ -57,7 +57,7 @@ function pintarArchivador() {
     const pend = f.tasks.filter(t => !t.done).length;
     const dt = f.date || (pend ? `${pend} pendiente${pend > 1 ? 's' : ''}` : '');
     return `<article class="folder${i === fs.length - 1 ? ' last' : ''}" data-id="${esc(f.id)}" style="--c:${esc(f.color)};--tx:${TX[i % 3]};--z:${i + 1}">
-      <div class="tab">${esc(f.name)}</div>
+      <div class="tab"${f.tabX != null ? ` style="left:${f.tabX}%;right:auto"` : ''} title="Arrastra la pestaña hacia los lados para moverla">${esc(f.name)}</div>
       <div class="strip"><div class="peek"><span class="n">${String(i + 1).padStart(2, '0')}</span><div class="d">${esc(f.peek || f.lead || 'Carpeta nueva.')}<br><span class="go">Abrir carpeta</span></div><span class="dt">${esc(dt)}</span></div></div>
       <button class="hit" aria-label="Abrir ${esc(f.name)}"></button></article>`;
   }).join('');
@@ -67,7 +67,21 @@ function pintarArchivador() {
   $('#spines').innerHTML = `<button class="spine" data-id="_diario" style="--sc:#2A2A2A">Diario</button>` + fs.map(f => `<button class="spine" data-id="${esc(f.id)}" style="--sc:${esc(f.color)}">${esc(f.name)}</button>`).join('');
   pie();
 }
-cab.addEventListener('click', e => { const h = e.target.closest('.hit,.tab'); if (h) abrir(h.closest('.folder').dataset.id, h.closest('.folder')); });
+let tabArr = null, tabSolto = 0;
+cab.addEventListener('pointerdown', e => { const t = e.target.closest('.tab'); if (t) tabArr = { t, fo: t.closest('.folder'), x0: e.clientX, l0: t.offsetLeft, pid: e.pointerId, mov: false }; });
+cab.addEventListener('pointermove', e => {
+  const a = tabArr; if (!a || e.pointerId !== a.pid) return;
+  const dx = e.clientX - a.x0;
+  if (!a.mov) { if (Math.abs(dx) < 8) return; a.mov = true; a.t.classList.add('moviendo'); try { a.t.setPointerCapture(e.pointerId); } catch (er) {} }
+  a.t.style.left = Math.min(a.fo.clientWidth - a.t.offsetWidth, Math.max(0, a.l0 + dx)) + 'px'; a.t.style.right = 'auto';
+});
+const finTab = e => {
+  const a = tabArr; tabArr = null; if (!a || !a.mov) return;
+  a.t.classList.remove('moviendo'); tabSolto = Date.now();
+  const f = F(a.fo.dataset.id); if (f) { f.tabX = Math.round(a.t.offsetLeft / a.fo.clientWidth * 1000) / 10; save(); pintarArchivador(); }
+};
+cab.addEventListener('pointerup', finTab); cab.addEventListener('pointercancel', finTab);
+cab.addEventListener('click', e => { if (Date.now() - tabSolto < 500) return; const h = e.target.closest('.hit,.tab'); if (h) abrir(h.closest('.folder').dataset.id, h.closest('.folder')); });
 
 /* ═══ EXPEDIENTE ═══ */
 const dos = $('#dossier'), grow = $('#grow'), deskIn = $('#deskIn'), desk = $('#desk');
@@ -124,7 +138,7 @@ function ajustes(f, idx) {
     <div style="margin-top:10px"><label>Texto de la hoja${f.seed ? ' (se suma al contenido base)' : ''}<textarea class="area" name="desc" placeholder="Escribe lo que quieras que quede fijo en esta carpeta.">${esc(f.desc)}</textarea></label></div>
     <div style="margin-top:10px;font-family:var(--mono);font-size:.76rem;color:var(--paper-2)">Color</div>
     <div class="swatches" role="group" aria-label="Color de la carpeta">${COLORS.map(c => `<button type="button" class="sw" data-act="color" data-c="${c}" style="--s:${c}" aria-label="Color ${c}" aria-pressed="${c === f.color}"></button>`).join('')}</div>
-    <div class="btns"><button class="pbtn">Guardar cambios</button><button type="button" class="pbtn lite" data-act="move" data-d="-1"${idx === 0 ? ' disabled' : ''}>↑ Subir</button><button type="button" class="pbtn lite" data-act="move" data-d="1"${idx === st.folders.length - 1 ? ' disabled' : ''}>↓ Bajar</button>
+    <div class="btns"><button class="pbtn">Guardar cambios</button><button type="button" class="pbtn lite" data-act="move" data-d="-1"${idx === 0 ? ' disabled' : ''}>↑ Subir</button><button type="button" class="pbtn lite" data-act="move" data-d="1"${idx === st.folders.length - 1 ? ' disabled' : ''}>↓ Bajar</button>${f.tabX != null ? '<button type="button" class="pbtn lite" data-act="tab-reset">Pestaña a su lugar</button>' : ''}
     ${conf ? `<span class="confirm">¿Borrar la carpeta con sus notas y tareas? <button type="button" class="pbtn danger" data-act="folder-del-ok">Sí, borrar</button><button type="button" class="pbtn lite" data-act="cancel-confirm">No</button></span>` : `<button type="button" class="pbtn danger" data-act="folder-del">Borrar carpeta</button>`}</div></form></details>`;
 }
 function seccionesBase(f) {
@@ -155,6 +169,9 @@ function pintarDiario(swap) {
   const todas = st.folders.flatMap(f => f.notes.map(n => ({ ...n, _f: f.id, _fn: f.name, _fc: f.color }))).sort((a, b) => b.ts - a.ts);
   const ns = q ? todas.filter(n => n.txt.toLowerCase().includes(q) || n._fn.toLowerCase().includes(q)) : todas;
   const pend = st.folders.flatMap(f => f.tasks.filter(t => !t.done).map(t => ({ ...t, _fn: f.name, _fc: f.color, _f: f.id })));
+  // Las que se tachan siguen a la vista (14 días), tachadas, para poder destacharlas
+  const hace = Date.now() - 14 * 864e5;
+  const lista = st.folders.flatMap(f => f.tasks.filter(t => !t.done || (t.at || 0) > hace).map(t => ({ ...t, _fn: f.name, _f: f.id })));
   const html = `<div class="side"><div class="sheet excerpt anim a2"><h3>Resumen</h3><div class="big">${pend.length}<small>tareas pendientes en todas las carpetas</small></div>
       ${st.folders.map(f => { const p = f.tasks.filter(t => !t.done).length; return `<div class="row"><span>${esc(f.name)}</span><b>${p} · ${f.notes.length} notas</b></div>`; }).join('')}</div></div>
     <div class="sheet main anim"><div class="holes" aria-hidden="true"><i></i><i></i><i></i></div><div class="margin" aria-hidden="true"></div><div class="file">Diario</div>
@@ -162,13 +179,13 @@ function pintarDiario(swap) {
     <h2 id="dTitle">Diario</h2>
     <input class="field" id="qDiario" type="search" placeholder="Buscar en las notas…" aria-label="Buscar en las notas" value="${esc(filtro)}">
     ${ns.length ? `<ul class="notes">${ns.map(n => notaHTML(n, `<span class="chip" style="background:${esc(n._fc)}">${esc(n._fn)}</span>`)).join('')}</ul>` : `<p class="empty">${q ? 'Nada coincide con la búsqueda.' : 'Todavía no hay notas. Abre una carpeta y escribe la primera.'}</p>`}
-    ${pend.length ? `<div class="sec"><h3>Pendientes de todas las carpetas</h3><ul class="check">${pend.map(t => `<li><label><input type="checkbox" data-task="${esc(t.id)}" data-f="${esc(t._f)}"><span>${esc(t.t)}<small>${esc(t._fn)}${t.g ? ' · ' + esc(t.g) : ''}</small></span></label></li>`).join('')}</ul></div>` : ''}
+    ${lista.length ? `<div class="sec"><h3>Tareas de todas las carpetas <small id="dCuenta">${pend.length} pendiente${pend.length === 1 ? '' : 's'}</small></h3><ul class="check">${lista.map(t => `<li><label><input type="checkbox" data-task="${esc(t.id)}" data-f="${esc(t._f)}"${t.done ? ' checked' : ''}><span>${esc(t.t)}<small>${esc(t._fn)}${t.g ? ' · ' + esc(t.g) : ''}</small></span></label></li>`).join('')}</ul></div>` : ''}
     <div class="sign"><span>Yojhan Furuya · KY SpA</span>${sello()}</div></div>`;
   poner(html, swap);
   if (location.hash !== '#diario') history.replaceState(null, '', '#diario');
 }
 function poner(html, swap) {
-  const put = () => { const y = desk.scrollTop; deskIn.innerHTML = html; desk.scrollTop = swap ? 0 : y; };
+  const put = () => { const y = desk.scrollTop; deskIn.innerHTML = html; desk.scrollTop = swap ? 0 : y; dispatchEvent(new CustomEvent('ky:pintado', { detail: { id: actual } })); };
   if (swap && !reduced) { dos.classList.remove('shown'); setTimeout(() => { put(); requestAnimationFrame(() => requestAnimationFrame(() => dos.classList.add('shown'))); }, 160); }
   else { put(); dos.classList.add('shown'); }
 }
@@ -179,7 +196,8 @@ deskIn.addEventListener('change', e => {
   const c = e.target.closest('input[data-task]'); if (!c) return;
   const f = F(c.dataset.f || actual); const t = f && f.tasks.find(x => x.id === c.dataset.task); if (!t) return;
   t.done = c.checked; t.at = Date.now(); save(); pintarArchivador();
-  if (actual === '_diario') setTimeout(() => pintar('_diario', false), 350);
+  if (t.done) toast('Tarea tachada', 'Destachar', () => { t.done = false; t.at = Date.now(); c.checked = false; save(); pintarArchivador(); });
+  if (actual === '_diario') { const n = st.folders.reduce((a, x) => a + x.tasks.filter(y => !y.done).length, 0), h = $('#dCuenta'); if (h) h.textContent = `${n} pendiente${n === 1 ? '' : 's'}`; }
   else { const h = $('.sec h3 small', deskIn); if (h) h.textContent = `${f.tasks.filter(x => x.done).length} de ${f.tasks.length} hechas`; }
 });
 deskIn.addEventListener('input', e => { if (e.target.id === 'qDiario') { filtro = e.target.value; const pos = e.target.selectionStart; pintar('_diario', false); const i = $('#qDiario'); i.focus(); i.setSelectionRange(pos, pos); } });
@@ -228,6 +246,7 @@ deskIn.addEventListener('click', e => {
     const i = st.folders.indexOf(f), j = i + Number(b.dataset.d); if (j < 0 || j >= st.folders.length) return;
     [st.folders[i], st.folders[j]] = [st.folders[j], st.folders[i]]; save(); refrescar(); $('details.cfg', deskIn).open = true;
   }
+  else if (act === 'tab-reset') { delete f.tabX; save(); refrescar(); $('details.cfg', deskIn).open = true; }
   else if (act === 'folder-del') { confirmar = 'f:' + f.id; refrescar(); }
   else if (act === 'folder-del-ok') {
     const i = st.folders.indexOf(f); st.folders.splice(i, 1); if (f.seed) (st.deleted = st.deleted || []).push(f.id);
@@ -252,7 +271,7 @@ function abrir(id, el) {
   } else { dos.classList.add('open', 'shown'); $('#dClose').focus(); }
 }
 function cerrar() {
-  dos.classList.remove('shown', 'open'); document.body.classList.remove('lock'); actual = null;
+  dos.classList.remove('shown', 'open'); document.body.classList.remove('lock'); actual = null; dispatchEvent(new CustomEvent('ky:cerrado'));
   history.replaceState(null, '', location.pathname + location.search);
   ultimoFoco && ultimoFoco.focus && ultimoFoco.focus();
 }
@@ -308,6 +327,9 @@ $('#bResp').addEventListener('click', () => {
     $('#rSi').onclick = () => { st = d; st.folders.forEach(f => { f.tasks = f.tasks || []; f.notes = f.notes || []; }); save(); cerrarModal(); if (actual) cerrar(); pintarArchivador(); toast('Respaldo importado'); };
   });
 });
+
+/* ═══ PUENTE CON LA MESA (mesa.js) ═══ */
+window.KY = { get st() { return st; }, save, toast, get actual() { return actual; } };
 
 /* ═══ INICIO ═══ */
 pintarArchivador();
