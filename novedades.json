@@ -187,6 +187,12 @@
    "carpeta": "produccion",
    "ts": "2026-11-27T16:45:00-03:00",
    "txt": "Cloudflare: cuenta creada con kyesepea@gmail.com, pulsoresto.cl agregado en plan Free. Servidores de nombre asignados: kira.ns.cloudflare.com y malcolm.ns.cloudflare.com (van en NIC). Los registros A (dirección del servidor) se agregan cuando Vultr entregue la IP."
+  },
+  {
+   "id": "2026-11-27-26",
+   "tipo": "hecha",
+   "carpeta": "pendientes",
+   "t": "Cambiar los DNS en NIC a Cloudflare"
   }
  ]
 }
