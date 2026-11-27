@@ -317,6 +317,44 @@
    "carpeta": "produccion",
    "campo": "Sistema",
    "valor": "Ubuntu 24.04 LTS"
+  },
+  {
+   "id": "2026-11-27-45",
+   "tipo": "nota",
+   "carpeta": "pulso",
+   "ts": "2026-11-27T18:50:00-03:00",
+   "txt": "Pulso 1.9.7 (antes de subir al servidor). Se probó todo con 93 pruebas automáticas: bodegas (compras, traspasos, producción, comandas, anulaciones, mermas, retiros, reposición, conteo, «qué pedir»), caja (cobro mixto, descuentos, doble clic), cierre y reportes, permisos y separación entre locales. Corregido: (1) no se puede archivar una bodega o insumo en uso; (2) no se puede borrar un plato con comandas abiertas; (3) el garzón ya no devuelve a bodega algo que cocina ya preparó; (4) costo promedio ponderado al comprar; (5) «Qué pedir» sugiere traspasar si sobra en otra bodega. Dominio cambiado a pulsoresto.cl en todo el paquete."
+  },
+  {
+   "id": "2026-11-27-46",
+   "tipo": "ficha",
+   "carpeta": "pulso",
+   "campo": "Versión",
+   "valor": "Pulso 1.9.7"
+  },
+  {
+   "id": "2026-11-27-47",
+   "tipo": "ficha",
+   "carpeta": "pulso",
+   "campo": "Paquete",
+   "valor": "pulso_v1.9.7.zip"
+  },
+  {
+   "id": "2026-11-27-48",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Pruebas a fondo de Pulso antes de subirlo",
+   "s": "93 pruebas OK · versión 1.9.7",
+   "hecha": true
+  },
+  {
+   "id": "2026-11-27-49",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Probar Pulso 1.9.7 a mano con la carta real de Sikdorak",
+   "s": "bodegas: Bodega, Cocina, Bar · recetas de los platos más vendidos"
   }
  ]
 }
