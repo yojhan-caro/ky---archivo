@@ -158,6 +158,35 @@
    "carpeta": "pendientes",
    "t": "Renovar pulsoresto.cl",
    "s": "vence el 27 nov 2027 · si vence, se puede perder"
+  },
+  {
+   "id": "2026-11-27-22",
+   "tipo": "editar",
+   "carpeta": "pendientes",
+   "t": "Crear cuenta en Cloudflare",
+   "nuevo": "Crear cuenta en Cloudflare y agregar pulsoresto.cl",
+   "s": "plan Free"
+  },
+  {
+   "id": "2026-11-27-23",
+   "tipo": "hecha",
+   "carpeta": "pendientes",
+   "t": "Crear cuenta en Cloudflare y agregar pulsoresto.cl"
+  },
+  {
+   "id": "2026-11-27-24",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Cambiar los DNS en NIC a Cloudflare",
+   "s": "kira / malcolm.ns.cloudflare.com · tarda hasta 24 h"
+  },
+  {
+   "id": "2026-11-27-25",
+   "tipo": "nota",
+   "carpeta": "produccion",
+   "ts": "2026-11-27T16:45:00-03:00",
+   "txt": "Cloudflare: cuenta creada con kyesepea@gmail.com, pulsoresto.cl agregado en plan Free. Servidores de nombre asignados: kira.ns.cloudflare.com y malcolm.ns.cloudflare.com (van en NIC). Los registros A (dirección del servidor) se agregan cuando Vultr entregue la IP."
   }
  ]
 }
