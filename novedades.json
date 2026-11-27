@@ -206,6 +206,117 @@
    "carpeta": "produccion",
    "ts": "2026-11-27T17:10:00-03:00",
    "txt": "Llave SSH creada en el notebook (LAPTOP-JVE3AHAL), tipo ed25519, en C:\\Users\\kangy\\.ssh\\. La pública (id_ed25519.pub) se le da a Vultr; la privada (id_ed25519) no se comparte nunca. Si cambias de PC hay que crear otra y agregarla al servidor."
+  },
+  {
+   "id": "2026-11-27-30",
+   "tipo": "hecha",
+   "carpeta": "pendientes",
+   "t": "Crear cuenta en Vultr"
+  },
+  {
+   "id": "2026-11-27-31",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Crear el servidor en Vultr (Santiago)",
+   "s": "pulso-1 · 64.176.30.160 · 1 CPU 2 GB · Ubuntu 24.04",
+   "hecha": true
+  },
+  {
+   "id": "2026-11-27-32",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Apuntar pulsoresto.cl al servidor en Cloudflare",
+   "s": "registros A: @, www y * → 64.176.30.160",
+   "hecha": true
+  },
+  {
+   "id": "2026-11-27-33",
+   "tipo": "editar",
+   "carpeta": "pendientes",
+   "t": "Instalar el servidor y Sikdorak",
+   "s": "entrar por SSH y correr instalar-servidor.sh · próximo paso"
+  },
+  {
+   "id": "2026-11-27-34",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Subir al Archivo las facturas y comprobantes",
+   "s": "NIC (factura por correo), Vultr/PayPal · carpeta Producción → Documentos"
+  },
+  {
+   "id": "2026-11-27-35",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Diciembre",
+   "t": "Recargar saldo en Vultr antes de fin de mes",
+   "s": "el servidor gasta ~US$12/mes y hay US$10 cargados"
+  },
+  {
+   "id": "2026-11-27-36",
+   "tipo": "tarea",
+   "carpeta": "pendientes",
+   "g": "Fin de mes, con dinero",
+   "t": "Activar verificación en 2 pasos en Vultr y Cloudflare",
+   "s": "Account → Security en cada uno"
+  },
+  {
+   "id": "2026-11-27-37",
+   "tipo": "nota",
+   "carpeta": "produccion",
+   "ts": "2026-11-27T17:58:00-03:00",
+   "txt": "Vultr: la tarjeta fue rechazada dos veces («Linking denied» y «Unable to process payment»), probablemente por compras internacionales bloqueadas o falta de saldo. Se pagó por PayPal: US$10 de saldo prepagado (~$9.500). El correo de la cuenta quedó verificado."
+  },
+  {
+   "id": "2026-11-27-38",
+   "tipo": "nota",
+   "carpeta": "produccion",
+   "ts": "2026-11-27T18:15:00-03:00",
+   "txt": "Servidor creado en Vultr. Nombre: pulso-1 (etiqueta «Pulso produccion»). Lugar: Santiago, Chile. Plan vc2-1c-2gb: 1 CPU, 2 GB de RAM, 55 GB de disco, US$10/mes + US$2/mes de respaldos automáticos. Sistema: Ubuntu 24.04 LTS. Dirección IP: 64.176.30.160. Se entra con la llave SSH «notebook-yojhan», sin contraseña."
+  },
+  {
+   "id": "2026-11-27-39",
+   "tipo": "nota",
+   "carpeta": "produccion",
+   "ts": "2026-11-27T18:18:00-03:00",
+   "txt": "Cloudflare → DNS → Records: se crearon 3 registros tipo A apuntando a 64.176.30.160: pulsoresto.cl (la landing), www.pulsoresto.cl y *.pulsoresto.cl (comodín: cualquier cliente nuevo como sikdorak.pulsoresto.cl funciona solo). Quedaron en «DNS only» (nube gris) para que el candado HTTPS se instale directo en el servidor con certbot. Más adelante se puede activar la nube naranja."
+  },
+  {
+   "id": "2026-11-27-40",
+   "tipo": "nota",
+   "carpeta": "guia",
+   "ts": "2026-11-27T18:30:00-03:00",
+   "txt": "Resumen del 27-11-2026 en simple: compramos el nombre (pulsoresto.cl, en NIC), le dijimos a NIC que la guía de direcciones la lleva Cloudflare, arrendamos el local (servidor en Vultr, Santiago), hicimos la llave de la puerta (SSH) y en Cloudflare anotamos la dirección del local (64.176.30.160). Lo único que falta es «amoblar el local»: instalar Pulso y la landing en el servidor."
+  },
+  {
+   "id": "2026-11-27-41",
+   "tipo": "ficha",
+   "carpeta": "produccion",
+   "campo": "Servidor",
+   "valor": "pulso-1 · Vultr Santiago"
+  },
+  {
+   "id": "2026-11-27-42",
+   "tipo": "ficha",
+   "carpeta": "produccion",
+   "campo": "IP",
+   "valor": "64.176.30.160"
+  },
+  {
+   "id": "2026-11-27-43",
+   "tipo": "ficha",
+   "carpeta": "produccion",
+   "campo": "DNS",
+   "valor": "Cloudflare (kira / malcolm)"
+  },
+  {
+   "id": "2026-11-27-44",
+   "tipo": "ficha",
+   "carpeta": "produccion",
+   "campo": "Sistema",
+   "valor": "Ubuntu 24.04 LTS"
   }
  ]
 }

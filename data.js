@@ -7,7 +7,7 @@
    aquí con un id nuevo: la app la agrega sin tocar lo tuyo.
    ══════════════════════════════════════════════════════════════ */
 window.KY_SEED = {
-  version: 1,
+  version: 2,
   empresa: { nombre: 'KY SpA', duenio: 'Yojhan Furuya', rut: '78.563.057-2', lugar: 'Viña del Mar · Chile' },
   folders: [
     { id: 'empresa', name: 'Empresa', color: '#5D1650', date: '21 nov 2026',
@@ -33,17 +33,89 @@ window.KY_SEED = {
       ficha: [['Versión', 'Pulso 1.9.6'], ['Agente', '2.2.3 (Windows)'], ['Paquete', 'pulso_v1.9.6.zip'], ['Hecho con', 'PHP 8 · MariaDB · JS'], ['Impresoras', 'USB y red, ESC/POS']],
       ex: { h: 'En números', big: ['1', 'primer cliente: Sikdorak'], rows: [['Áreas', 'salón · cocina · caja'], ['Impresoras', 'ilimitadas'], ['Usuarios', 'ilimitados']] } },
 
-    { id: 'produccion', name: 'Producción', color: '#11735A', date: 'fin de mes',
-      peek: 'Subir Pulso a internet: dominio, servidor y la instalación paso a paso. Espera el dinero de fin de mes.',
+    { id: 'produccion', name: 'Producción', color: '#11735A', date: '27 nov 2026',
+      peek: 'Dominio, Cloudflare y servidor en Santiago listos. Falta instalar Pulso y la landing.',
       title: 'A internet',
-      lead: 'Un servidor en Santiago atiende a todos los clientes. Cada restaurante tiene su propia dirección y su propia base de datos: los datos nunca se mezclan.',
+      lead: 'Un servidor en Santiago atiende a todos los clientes. Cada restaurante tiene su propia dirección (sikdorak.pulsoresto.cl) y su propia base de datos: los datos nunca se mezclan. Si algo de esto se te olvida, abre la carpeta «Guía»: ahí está explicado con calma.',
       sections: [
-        { h: 'Lo que hay que comprar', table: { head: ['Qué', 'Dónde', 'Costo'], num: [2], rows: [['Dominio pulsoresto.cl, a nombre de KY SpA', 'nic.cl', '~$9.950 + IVA/año'], ['Servidor 2 GB, región Santiago', 'vultr.com', '~US$12/mes'], ['Respaldo automático del servidor', 'Vultr', '+20%'], ['Candado HTTPS', 'Let’s Encrypt', 'gratis'], ['Aviso si se cae', 'UptimeRobot', 'gratis']] } },
-        { h: 'El orden', list: ['Comprar el dominio y crear la cuenta de Vultr con verificación en 2 pasos', 'Generar la llave SSH en el PC (lo hacemos juntos)', 'Crear el servidor y apuntar el dominio (pulsoresto.cl, www, sikdorak, demo)', 'Instalar con un comando: queda sikdorak.pulsoresto.cl con HTTPS y respaldo diario a las 04:00', 'Publicar la landing: pulso-landing pulsoresto.cl', 'Crear la demo para mostrar a otros restaurantes'] },
-        { p: 'La guía completa está en el paquete de Pulso, en deploy/GUIA-PRODUCCION.md.' }
+        { h: 'Hecho el 27 de noviembre de 2026', list: [
+          ['ok', '15:06 · Gmail de la empresa: kyesepea@gmail.com (se usa en NIC, Cloudflare y Vultr)'],
+          ['ok', '15:40 · Cuenta en NIC Chile a nombre de KY SpA (Persona Jurídica, RUT 78.563.057-2)'],
+          ['ok', '16:21 · Dominio pulsoresto.cl inscrito y pagado: $9.990 con Webpay. Vence el 27-11-2027'],
+          ['ok', '16:40 · Cuenta en Cloudflare (plan Free, gratis) y pulsoresto.cl agregado'],
+          ['ok', '16:47 · En NIC se cambiaron los servidores de nombre a kira y malcolm.ns.cloudflare.com'],
+          ['ok', '17:10 · Llave SSH creada en el notebook (ed25519) y subida a Vultr como «notebook-yojhan»'],
+          ['ok', '17:58 · Cuenta en Vultr con US$10 de saldo cargados por PayPal (la tarjeta directa fue rechazada)'],
+          ['ok', '18:15 · Servidor «Pulso produccion» creado en Santiago: 1 CPU, 2 GB, Ubuntu 24.04, respaldos automáticos'],
+          ['ok', '18:18 · En Cloudflare: pulsoresto.cl, www y * (todos los subdominios) apuntan al servidor 64.176.30.160'] ] },
+        { h: 'Lo que falta', list: [
+          ['wait', 'Entrar al servidor por SSH e instalar Pulso con instalar-servidor.sh'],
+          ['wait', 'Publicar la landing en pulsoresto.cl (landing.sh) con su candado HTTPS'],
+          ['wait', 'Crear sikdorak.pulsoresto.cl y demo.pulsoresto.cl (nuevo-cliente.sh)'],
+          ['wait', 'Aviso de caídas gratis con UptimeRobot'],
+          ['wait', 'Activar la verificación en 2 pasos en Vultr, Cloudflare y Gmail'],
+          ['wait', 'Subir aquí las facturas y comprobantes (NIC, Vultr) en «Documentos»'] ] },
+        { h: 'Lo que se paga', table: { head: ['Qué', 'Dónde', 'Costo', 'Cuándo'], num: [2], rows: [
+          ['Dominio pulsoresto.cl', 'NIC Chile', '$9.990', 'cada año · 27 nov'],
+          ['Servidor 1 CPU · 2 GB · Santiago', 'Vultr', 'US$10', 'mensual, del saldo'],
+          ['Respaldo automático del servidor', 'Vultr', 'US$2', 'mensual, del saldo'],
+          ['DNS, candado y protección', 'Cloudflare', 'gratis', '—'],
+          ['Certificado HTTPS', 'Let’s Encrypt', 'gratis', 'se renueva solo'] ] } },
+        { h: 'Ojo con el saldo de Vultr', p: 'Vultr funciona como prepago: cargaste US$10 y el servidor gasta unos US$12 al mes. Antes de fin de diciembre hay que recargar (por PayPal) o el servidor se apaga. Vultr avisa por correo cuando el saldo está bajo.' },
+        { p: 'La guía técnica completa está en el paquete de Pulso, en deploy/GUIA-PRODUCCION.md.' }
       ],
       ficha: [['Landing', 'pulsoresto.cl'], ['Cliente 1', 'sikdorak.pulsoresto.cl'], ['Demo', 'demo.pulsoresto.cl'], ['Servidor', 'Ubuntu 24.04'], ['Respaldo', 'diario 04:00']],
-      ex: { h: 'Costo al mes', big: ['~$15 mil', 'servidor + respaldo, aprox.'], rows: [['Dominio', '~$1 mil/mes'], ['Se paga con', '1 local en plan Completo']] } },
+      ex: { h: 'El servidor', big: ['pulso-1', 'Vultr · Santiago'], rows: [['Dirección (IP)', '64.176.30.160'], ['Tamaño', '1 CPU · 2 GB · 55 GB'], ['Sistema', 'Ubuntu 24.04 LTS'], ['Costo', 'US$12/mes'], ['Entra con', 'llave SSH']] } },
+
+    { id: 'guia', name: 'Guía', color: '#0F6E7A', date: 'para entender',
+      peek: 'Qué es cada cosa (dominio, DNS, Cloudflare, servidor, SSH) y para qué sirve, explicado simple.',
+      title: 'Cómo funciona Pulso en internet',
+      lead: 'Explicado sin tecnicismos. Cuando una palabra rara aparezca en el trabajo, búscala aquí.',
+      sections: [
+        { h: 'La idea en una imagen: un local', table: { head: ['En internet', 'En la vida real', 'Lo nuestro'], rows: [
+          ['Dominio', 'El nombre y la dirección del local', 'pulsoresto.cl (NIC Chile)'],
+          ['DNS', 'Google Maps: dice dónde queda el local', 'Cloudflare'],
+          ['Servidor', 'El local mismo, donde se atiende', 'Vultr, en Santiago'],
+          ['IP', 'La dirección exacta en números', '64.176.30.160'],
+          ['Llave SSH', 'La llave de la puerta de atrás, solo para el dueño', 'en tu notebook'],
+          ['HTTPS', 'El candado de la puerta', 'Let’s Encrypt (gratis)'] ] } },
+        { h: 'Qué pasa cuando alguien abre sikdorak.pulsoresto.cl', list: [
+          '1. Su teléfono pregunta a NIC Chile: «¿quién sabe dónde está pulsoresto.cl?»',
+          '2. NIC responde: «pregúntale a Cloudflare» (kira y malcolm.ns.cloudflare.com).',
+          '3. Cloudflare responde: «está en 64.176.30.160» (el servidor en Vultr).',
+          '4. El teléfono va a esa dirección y el servidor le entrega Pulso, con candado.',
+          'Todo eso pasa en menos de un segundo, y el teléfono lo recuerda por un rato.' ] },
+        { h: 'Cada pieza: qué es, para qué sirve y dónde se entra', table: { head: ['Servicio', 'Qué hace por nosotros', 'Dónde se entra', 'Cuenta'], rows: [
+          ['NIC Chile', 'Registro oficial de los .cl. Dice que pulsoresto.cl es de KY SpA y a quién preguntarle la dirección', 'clientes.nic.cl', 'kyesepea@gmail.com'],
+          ['Cloudflare', 'La guía de direcciones (DNS). Más adelante: candado, protección contra ataques y ocultar la IP', 'dash.cloudflare.com', 'kyesepea@gmail.com'],
+          ['Vultr', 'Arrienda el computador (servidor) que está encendido 24/7 en Santiago', 'console.vultr.com', 'kyesepea@gmail.com'],
+          ['PayPal', 'Paga Vultr (la tarjeta directa fue rechazada)', 'paypal.com', 'tu cuenta'],
+          ['Gmail', 'Correo administrador: ahí llegan facturas, avisos y verificaciones', 'gmail.com', 'kyesepea@gmail.com'] ] } },
+        { h: 'Palabras que vas a escuchar', list: [
+          'Dominio: el nombre que la gente escribe (pulsoresto.cl). Se arrienda por año; si no se renueva, se pierde.',
+          'Subdominio: un nombre dentro del dominio, como sikdorak.pulsoresto.cl. Cada restaurante tiene el suyo, gratis.',
+          'Comodín (*): el registro «*» en Cloudflare hace que cualquier subdominio nuevo funcione solo, sin configurar nada.',
+          'DNS: el sistema que traduce nombres a números (IP). Es la guía telefónica de internet.',
+          'Servidores de nombre (nameservers): quién responde la guía de tu dominio. Para nosotros: kira y malcolm de Cloudflare.',
+          'Registro A: una línea de la guía que dice «este nombre está en esta IP».',
+          'IP: la dirección numérica de un computador en internet. La nuestra es 64.176.30.160.',
+          'Servidor (VPS): un computador arrendado, sin pantalla, encendido siempre. Se maneja escribiendo comandos.',
+          'Ubuntu: el sistema operativo del servidor (como Windows, pero para servidores). Versión 24.04 LTS = soporte por 5 años.',
+          'SSH: la forma segura de entrar al servidor desde tu PC para darle órdenes.',
+          'Llave SSH: un par de llaves. La privada (id_ed25519) vive en tu notebook y no se comparte nunca. La pública (.pub) se le da a Vultr: es la cerradura.',
+          'HTTPS / candado: cifra lo que viaja entre el teléfono y el servidor. Sin él, el navegador marca el sitio como «no seguro».',
+          'Proxy de Cloudflare (nube naranja): Cloudflare se pone delante del servidor. Por ahora está en gris (solo DNS) para que el candado se instale fácil; después se puede activar.',
+          'Respaldo automático: Vultr guarda una copia del servidor completo. Pulso además respalda las bases de datos cada noche a las 04:00.',
+          'Propagación: los cambios de DNS tardan de minutos a 24 horas en llegar a todo internet.' ] },
+        { h: 'Si algo falla', list: [
+          'La página no abre: revisa en console.vultr.com que el servidor diga «Running» y que haya saldo.',
+          'Dice «no seguro»: el candado no se instaló o venció. Se arregla en el servidor con certbot.',
+          'Un cliente nuevo no abre: revisa en Cloudflare que exista el registro «*».',
+          'El dominio dejó de funcionar: revisa en NIC que no haya vencido (vence el 27-11-2027).',
+          'Perdiste el notebook: la llave SSH se va con él. Se crea una nueva y se agrega desde la consola de Vultr.' ] }
+      ],
+      ficha: [['Dominio', 'pulsoresto.cl'], ['DNS', 'Cloudflare'], ['Servidor', 'Vultr · Santiago'], ['IP', '64.176.30.160'], ['Correo admin', 'kyesepea@gmail.com']],
+      ex: { h: 'En corto', rows: [['NIC', 'de quién es'], ['Cloudflare', 'dónde está'], ['Vultr', 'dónde vive Pulso'], ['SSH', 'cómo entro yo']] } },
 
     { id: 'ventas', name: 'Ventas', color: '#D6262B', date: '+ IVA',
       peek: 'Planes, precio fijo y plan fundador. Comparación con la competencia.',
