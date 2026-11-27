@@ -1,0 +1,23 @@
+{
+  "nota": "Novedades que Claude agrega al Archivo. Cada una se aplica una sola vez por dispositivo. No borres las anteriores: así un dispositivo nuevo recibe todo.",
+  "novedades": [
+    { "id": "2026-11-27-01", "tipo": "editar", "carpeta": "pendientes", "t": "Comprar pulsopos.cl", "nuevo": "Comprar pulsoresto.cl a nombre de KY SpA", "s": "nic.cl · $9.940 + IVA al año" },
+    { "id": "2026-11-27-02", "tipo": "editar", "carpeta": "pendientes", "t": "Publicar la landing", "s": "pulso-landing pulsoresto.cl" },
+    { "id": "2026-11-27-03", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Crear el Gmail de la empresa", "s": "kyesepea@gmail.com", "hecha": true },
+    { "id": "2026-11-27-04", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Activar verificación en 2 pasos del Gmail de la empresa", "s": "myaccount.google.com → Seguridad" },
+    { "id": "2026-11-27-05", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Crear la cuenta de KY SpA en NIC Chile", "s": "con kyesepea@gmail.com", "hecha": true },
+    { "id": "2026-11-27-06", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Cambiar la clave de NIC Chile", "s": "quedó escrita en el chat; poner una nueva" },
+    { "id": "2026-11-27-07", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Crear cuenta en Cloudflare y apuntar pulsoresto.cl", "s": "gratis · DNS, HTTPS y subdominios" },
+    { "id": "2026-11-27-08", "tipo": "tarea", "carpeta": "pendientes", "g": "Fin de mes, con dinero", "t": "Generar la llave SSH en el PC", "s": "para entrar al servidor sin contraseña" },
+    { "id": "2026-11-27-09", "tipo": "tarea", "carpeta": "pendientes", "g": "Diciembre", "t": "Actualizar la dirección de KY SpA en NIC", "s": "con el domicilio nuevo" },
+    { "id": "2026-11-27-10", "tipo": "tarea", "carpeta": "pendientes", "g": "Diciembre", "t": "Abrir cuenta en Flow como KY SpA", "s": "cobro mensual con tarjeta (Mercado Pago bloqueado)" },
+    { "id": "2026-11-27-11", "tipo": "tarea", "carpeta": "pendientes", "g": "Noviembre 2027", "t": "Renovar pulsoresto.cl", "s": "vence en noviembre de 2027 · si vence, se puede perder" },
+    { "id": "2026-11-27-12", "tipo": "nota", "carpeta": "marca", "ts": "2026-11-26T22:45:00-03:00", "txt": "Dominio: se cambió pulsopos.cl por pulsoresto.cl (pulsopos no convencía). Estaban ocupados pulsoapp.cl, mipulso.cl, pulsoweb.cl y pulsochile.cl. Cada cliente queda como sikdorak.pulsoresto.cl." },
+    { "id": "2026-11-27-13", "tipo": "nota", "carpeta": "empresa", "ts": "2026-11-27T15:06:00-03:00", "txt": "Correo administrador de KY SpA: kyesepea@gmail.com. Se usa para NIC, Cloudflare, Vultr y Flow. El correo público para clientes será hola@pulsoresto.cl (Zoho, pendiente)." },
+    { "id": "2026-11-27-14", "tipo": "nota", "carpeta": "empresa", "ts": "2026-11-27T16:12:00-03:00", "txt": "Cuenta NIC Chile creada a nombre de KY SpA (Persona Jurídica, RUT 78.563.057-2). Dominio inscrito a nombre de la empresa, con factura a KY SpA. DNS provisorios ns1/ns2.vultr.com hasta pasar a Cloudflare." },
+    { "id": "2026-11-27-15", "tipo": "nota", "carpeta": "produccion", "ts": "2026-11-27T15:58:00-03:00", "txt": "Por qué Vultr: es el proveedor simple con datacenter en Santiago (comandas rápidas), precio fijo (~US$10 + US$2 respaldos) y se agranda con un clic. Google Cloud y Oracle también están en Santiago pero cuestan varias veces más y son más complejos. Encima: Cloudflare (gratis), monitor de caídas y copia de respaldos fuera de Vultr." },
+    { "id": "2026-11-27-16", "tipo": "nota", "carpeta": "ventas", "ts": "2026-11-26T20:17:00-03:00", "txt": "Decisión: pagar ya el dominio y el servidor y lanzar en la web (sin XAMPP). Sikdorak entra como primer cliente fundador en sikdorak.pulsoresto.cl. El registro automático para otros restaurantes se abre cuando estén el inicio de actividades, la cuenta bancaria y Flow." },
+    { "id": "2026-11-27-17", "tipo": "nota", "carpeta": "ventas", "ts": "2026-11-26T00:27:00-03:00", "txt": "Cobros: la cuenta de Mercado Pago está bloqueada. Opción elegida: Flow (chileno, suscripciones con cargo automático a tarjeta, ~2,89 % + IVA con abono a 3 días o 3,19 % + IVA al día siguiente). Alternativas: Reveniu, Transbank Oneclick o factura + transferencia." },
+    { "id": "2026-11-27-18", "tipo": "ficha", "carpeta": "clientes", "campo": "Dirección", "valor": "sikdorak.pulsoresto.cl" }
+  ]
+}

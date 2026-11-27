@@ -337,4 +337,34 @@ const h0 = location.hash.slice(1), id0 = h0 === 'diario' ? '_diario' : h0;
 if (id0 === '_diario' || F(id0)) { pintar(id0, false); dos.classList.add('open', 'shown'); document.body.classList.add('lock'); }
 if ('serviceWorker' in navigator && location.protocol === 'https:') navigator.serviceWorker.register('sw.js').catch(() => {});
 try { if (navigator.storage && navigator.storage.persist) navigator.storage.persist(); } catch (e) {}
+
+/* ═══ NOVEDADES: tareas y notas que llegan desde novedades.json ═══
+   Cada novedad tiene un id y se aplica una sola vez por dispositivo.
+   tipos: tarea (agrega) · hecha (tacha) · editar (cambia texto) · nota (agrega a la bitácora) · ficha (cambia un dato de la ficha) */
+function buscarTarea(f, txt) { const t = (txt || '').toLowerCase(); return f.tasks.find(x => x.t.toLowerCase() === t) || f.tasks.find(x => x.t.toLowerCase().startsWith(t)); }
+function aplicarNovedades(lista) {
+  st.aplicadas = st.aplicadas || [];
+  let n = 0;
+  lista.forEach(o => {
+    if (!o || !o.id || st.aplicadas.includes(o.id)) return;
+    const f = F(o.carpeta);
+    if (f) {
+      if (o.tipo === 'tarea' && !buscarTarea(f, o.t)) { f.tasks.push({ id: uid(), g: o.g || '', t: o.t, s: o.s || '', done: !!o.hecha, at: o.hecha ? Date.now() : undefined }); n++; }
+      else if (o.tipo === 'hecha') { const t = buscarTarea(f, o.t); if (t && !t.done) { t.done = true; t.at = Date.now(); n++; } }
+      else if (o.tipo === 'editar') { const t = buscarTarea(f, o.t); if (t) { if (o.nuevo) t.t = o.nuevo; if (o.s != null) t.s = o.s; if (o.g) t.g = o.g; n++; } }
+      else if (o.tipo === 'nota') { f.notes.push({ id: uid(), ts: o.ts ? Date.parse(o.ts) : Date.now(), txt: o.txt }); n++; }
+      else if (o.tipo === 'ficha' && Array.isArray(f.ficha)) { const r = f.ficha.find(x => x[0] === o.campo); if (r) r[1] = o.valor; else f.ficha.push([o.campo, o.valor]); n++; }
+    }
+    st.aplicadas.push(o.id);
+  });
+  if (n) { save(); refrescar(); toast(n === 1 ? '1 novedad agregada al archivo' : n + ' novedades agregadas al archivo'); }
+  else save();
+}
+function traerNovedades() {
+  if (!navigator.onLine) return;
+  fetch('novedades.json?t=' + Date.now(), { cache: 'no-store' }).then(r => r.ok ? r.json() : null).then(j => { if (j && Array.isArray(j.novedades)) aplicarNovedades(j.novedades); }).catch(() => {});
+}
+traerNovedades();
+addEventListener('online', traerNovedades);
+document.addEventListener('visibilitychange', () => { if (!document.hidden) traerNovedades(); });
 })();

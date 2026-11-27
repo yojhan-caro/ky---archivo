@@ -38,11 +38,11 @@ window.KY_SEED = {
       title: 'A internet',
       lead: 'Un servidor en Santiago atiende a todos los clientes. Cada restaurante tiene su propia dirección y su propia base de datos: los datos nunca se mezclan.',
       sections: [
-        { h: 'Lo que hay que comprar', table: { head: ['Qué', 'Dónde', 'Costo'], num: [2], rows: [['Dominio pulsopos.cl, a nombre de KY SpA', 'nic.cl', '~$9.950 + IVA/año'], ['Servidor 2 GB, región Santiago', 'vultr.com', '~US$12/mes'], ['Respaldo automático del servidor', 'Vultr', '+20%'], ['Candado HTTPS', 'Let’s Encrypt', 'gratis'], ['Aviso si se cae', 'UptimeRobot', 'gratis']] } },
-        { h: 'El orden', list: ['Comprar el dominio y crear la cuenta de Vultr con verificación en 2 pasos', 'Generar la llave SSH en el PC (lo hacemos juntos)', 'Crear el servidor y apuntar el dominio (pulsopos.cl, www, sikdorak, demo)', 'Instalar con un comando: queda sikdorak.pulsopos.cl con HTTPS y respaldo diario a las 04:00', 'Publicar la landing: pulso-landing pulsopos.cl', 'Crear la demo para mostrar a otros restaurantes'] },
+        { h: 'Lo que hay que comprar', table: { head: ['Qué', 'Dónde', 'Costo'], num: [2], rows: [['Dominio pulsoresto.cl, a nombre de KY SpA', 'nic.cl', '~$9.950 + IVA/año'], ['Servidor 2 GB, región Santiago', 'vultr.com', '~US$12/mes'], ['Respaldo automático del servidor', 'Vultr', '+20%'], ['Candado HTTPS', 'Let’s Encrypt', 'gratis'], ['Aviso si se cae', 'UptimeRobot', 'gratis']] } },
+        { h: 'El orden', list: ['Comprar el dominio y crear la cuenta de Vultr con verificación en 2 pasos', 'Generar la llave SSH en el PC (lo hacemos juntos)', 'Crear el servidor y apuntar el dominio (pulsoresto.cl, www, sikdorak, demo)', 'Instalar con un comando: queda sikdorak.pulsoresto.cl con HTTPS y respaldo diario a las 04:00', 'Publicar la landing: pulso-landing pulsoresto.cl', 'Crear la demo para mostrar a otros restaurantes'] },
         { p: 'La guía completa está en el paquete de Pulso, en deploy/GUIA-PRODUCCION.md.' }
       ],
-      ficha: [['Landing', 'pulsopos.cl'], ['Cliente 1', 'sikdorak.pulsopos.cl'], ['Demo', 'demo.pulsopos.cl'], ['Servidor', 'Ubuntu 24.04'], ['Respaldo', 'diario 04:00']],
+      ficha: [['Landing', 'pulsoresto.cl'], ['Cliente 1', 'sikdorak.pulsoresto.cl'], ['Demo', 'demo.pulsoresto.cl'], ['Servidor', 'Ubuntu 24.04'], ['Respaldo', 'diario 04:00']],
       ex: { h: 'Costo al mes', big: ['~$15 mil', 'servidor + respaldo, aprox.'], rows: [['Dominio', '~$1 mil/mes'], ['Se paga con', '1 local en plan Completo']] } },
 
     { id: 'ventas', name: 'Ventas', color: '#D6262B', date: '+ IVA',
@@ -71,12 +71,12 @@ window.KY_SEED = {
       ex: { h: 'El número', big: ['28', 'locales para pasar el millón'] } },
 
     { id: 'marca', name: 'Marca', color: '#C93F78', date: 'logo F1',
-      peek: 'Logo elegido, colores, tipografías y la landing de pulsopos.cl.',
+      peek: 'Logo elegido, colores, tipografías y la landing de pulsoresto.cl.',
       title: 'La marca',
       lead: 'Pulso usa el logo F1: la silueta de una comanda en coral con el latido blanco adentro, y «pulso» en letra gordita, blanca sobre fondo oscuro.',
       sections: [
         { h: 'Identidad', list: ['Coral #E8553D, tinta #141416, crema #FAF8F5', 'Títulos: Plus Jakarta Sans 800 · Texto: Inter', 'Lienzo del logo: «Pulso — Logo», fila Fusión, F1'] },
-        { h: 'Landing de pulsopos.cl', list: [['ok', 'Hecha: portada, cómo funciona, 8 funciones, impresión, comparación de precio, planes, preguntas y formulario de demo por WhatsApp'], ['wait', 'Poner el número de WhatsApp antes de publicar'], ['wait', 'Sumar el caso de Sikdorak cuando esté funcionando (sin testimonios inventados)']] },
+        { h: 'Landing de pulsoresto.cl', list: [['ok', 'Hecha: portada, cómo funciona, 8 funciones, impresión, comparación de precio, planes, preguntas y formulario de demo por WhatsApp'], ['wait', 'Poner el número de WhatsApp antes de publicar'], ['wait', 'Sumar el caso de Sikdorak cuando esté funcionando (sin testimonios inventados)']] },
         { h: 'Cuidado legal', p: 'pulso.cl es de COPESA (Diario Pulso). Antes de crecer, revisar en INAPI que «Pulso» esté libre en software (clases 9 y 42) y registrarla.' }
       ],
       ficha: [['Logo', 'F1 · Ticket'], ['Coral', '#E8553D'], ['Tinta', '#141416'], ['Títulos', 'Plus Jakarta Sans'], ['Landing', 'lista, sin publicar']],
@@ -87,10 +87,10 @@ window.KY_SEED = {
       title: 'Clientes',
       lead: 'Sikdorak es el primer cliente y el caso que va a abrir la puerta a los siguientes.',
       sections: [
-        { h: 'Sikdorak · plan fundador', list: [['ok', 'Sistema configurado y probado con su ticketera'], ['wait', 'Instalar en sikdorak.pulsopos.cl cuando el servidor esté listo'], ['wait', 'Conectar el PC de caja con el agente e imprimir la prueba en el local'], ['wait', 'Prueba de 10 minutos con el dueño antes del primer servicio'], ['wait', 'Cambiar el PIN de administrador (no dejar 1234)'], ['wait', 'Medir el tiempo de impresión con la primera comanda real']] },
-        { h: 'Los siguientes', p: 'Con la demo en demo.pulsopos.cl y la landing publicada, la meta es sumar 3 locales por mes. Anota cada uno en la bitácora de esta carpeta, con su plan y su fecha de inicio.' }
+        { h: 'Sikdorak · plan fundador', list: [['ok', 'Sistema configurado y probado con su ticketera'], ['wait', 'Instalar en sikdorak.pulsoresto.cl cuando el servidor esté listo'], ['wait', 'Conectar el PC de caja con el agente e imprimir la prueba en el local'], ['wait', 'Prueba de 10 minutos con el dueño antes del primer servicio'], ['wait', 'Cambiar el PIN de administrador (no dejar 1234)'], ['wait', 'Medir el tiempo de impresión con la primera comanda real']] },
+        { h: 'Los siguientes', p: 'Con la demo en demo.pulsoresto.cl y la landing publicada, la meta es sumar 3 locales por mes. Anota cada uno en la bitácora de esta carpeta, con su plan y su fecha de inicio.' }
       ],
-      ficha: [['Cliente 1', 'Sikdorak'], ['Plan', 'Fundador'], ['Dirección', 'sikdorak.pulsopos.cl'], ['Estado', 'por instalar']],
+      ficha: [['Cliente 1', 'Sikdorak'], ['Plan', 'Fundador'], ['Dirección', 'sikdorak.pulsoresto.cl'], ['Estado', 'por instalar']],
       ex: { h: 'Cupos fundador', big: ['1 / 5', 'usados'] } },
 
     { id: 'pendientes', name: 'Pendientes', color: '#2342D6', date: 'hoy',
@@ -105,10 +105,10 @@ window.KY_SEED = {
         ['Ahora, sin gastar', 'Logo nuevo dentro del sistema', 'reemplaza el ícono antiguo'],
         ['Ahora, sin gastar', 'Preparar la demo con una carta de ejemplo', 'para visitar restaurantes'],
         ['Ahora, sin gastar', 'Cambiar el PIN 1234 de administrador', ''],
-        ['Fin de mes, con dinero', 'Comprar pulsopos.cl a nombre de KY SpA', 'nic.cl · ~$11.800 al año'],
+        ['Fin de mes, con dinero', 'Comprar pulsoresto.cl a nombre de KY SpA', 'nic.cl · ~$11.800 al año'],
         ['Fin de mes, con dinero', 'Crear cuenta en Vultr con verificación en 2 pasos', '~US$12 al mes'],
         ['Fin de mes, con dinero', 'Instalar el servidor y Sikdorak', 'unos 30 minutos'],
-        ['Fin de mes, con dinero', 'Publicar la landing', 'pulso-landing pulsopos.cl'],
+        ['Fin de mes, con dinero', 'Publicar la landing', 'pulso-landing pulsoresto.cl'],
         ['Diciembre', 'Terminar el inicio de actividades con el domicilio nuevo', 'RUT del dueño del depto'],
         ['Diciembre', 'Abrir la cuenta bancaria de KY SpA', ''],
         ['Diciembre', 'Boleta electrónica con el RUT de la empresa', ''],
