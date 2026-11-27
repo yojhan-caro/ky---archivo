@@ -193,6 +193,19 @@
    "tipo": "hecha",
    "carpeta": "pendientes",
    "t": "Cambiar los DNS en NIC a Cloudflare"
+  },
+  {
+   "id": "2026-11-27-27",
+   "tipo": "hecha",
+   "carpeta": "pendientes",
+   "t": "Generar la llave SSH en el PC"
+  },
+  {
+   "id": "2026-11-27-28",
+   "tipo": "nota",
+   "carpeta": "produccion",
+   "ts": "2026-11-27T17:10:00-03:00",
+   "txt": "Llave SSH creada en el notebook (LAPTOP-JVE3AHAL), tipo ed25519, en C:\\Users\\kangy\\.ssh\\. La pública (id_ed25519.pub) se le da a Vultr; la privada (id_ed25519) no se comparte nunca. Si cambias de PC hay que crear otra y agregarla al servidor."
   }
  ]
 }
